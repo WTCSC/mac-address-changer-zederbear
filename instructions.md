@@ -1,3 +1,5 @@
+# IGNORE THIS FILE
+
 # Instructions
 
 Install ifconfig
