@@ -16,6 +16,20 @@ $ ./macdaddy.sh -i eth0 -u
 $ ./macdaddy.sh -i wlan1 -u
 $ ./macdaddy.sh enp0s3 -u
 ```
+```sh
+Usage: ./macdaddy.sh [-i <eth0|eth1|...>] [-a <mac-address>] [-r] [-u]
+    Examples:
+         ./macdaddy.sh -i   eth0 -r
+         ./macdaddy.sh -i enp0s3 -a 97:1a:d9:aa:a6:fd
+         ./macdaddy.sh -i  wlan1 -u
+
+    Options:
+        -i        Network interface           (Always required)
+        -a        Mac Address                 (Required unless using -r or -u)
+        -r        Randomizes your mac address (Not required)
+        -u        Resets your mac address     (Not required)
+```
+
 # Error Handling/Validation
 Checks the given mac address to see if it follows the specified format of 6 base 16 numbers with commas inbetween them
 -- I should probably check for valid interfaces
