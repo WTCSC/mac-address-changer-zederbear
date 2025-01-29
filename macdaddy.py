@@ -8,11 +8,11 @@ import re
 
 # Define the custom description text
 description_text = textwrap.dedent('''\
-                                                             Usage: ./macdaddy.sh [-i <eth0|eth1|...>] [-a <mac-address>] [-r] [-u]
+                                                             Usage: python3 macdaddy.py [-i <eth0|eth1|...>] [-a <mac-address>] [-r] [-u]
                                                                 Examples:
-                                                                    ./macdaddy.sh -i   eth0 -r
-                                                                    ./macdaddy.sh -i enp0s3 -a 97:1a:d9:aa:a6:fd
-                                                                    ./macdaddy.sh -i  wlan1 -u
+                                                                    python3 macdaddy.py -i   eth0 -r
+                                                                    python3 macdaddy.py -i enp0s3 -a 97:1a:d9:aa:a6:fd
+                                                                    python3 macdaddy.py -i  wlan1 -u
                                                              
                                                                 Options:
                                                                     -h, --help             Shows this message          (Not required)
@@ -48,10 +48,11 @@ if args.help:
     print(description_text)  # Print only the custom description
     sys.exit(0)  # Exit after printing the help message
 
-if not args.help and not args.interface:
+if not args.help and not args.interface: # Force you to use interface
     parser.error("The -i/--interface option is required.")
 
-variables = vars(args)
+if not args.randomize and not args.undo and not args.address and not args.help: # Force you to use one of these three options, you cannot use just i
+    parser.error("Address must be included if randomize and undo are not included")
 
 def save_perm_address(iface):
     PERMANENT_ADDRESS_FILE = f'/tmp/{iface}_perm_mac.txt'
